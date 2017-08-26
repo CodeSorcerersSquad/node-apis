@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/CodeSorcerersSquad/node-apis#readme",
   "dependencies": {
+    "bunyan": "^1.8.12",
     "lodash": "^4.17.4",
     "restify": "^5.2.0"
   }

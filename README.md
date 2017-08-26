@@ -2,6 +2,10 @@
 
 Motor de RESTful APIs em Node.js.
 
+## Requerimentos
+
+1. Node.js versão >= 6.0 (Recomendado a versão LTS);
+
 ## Instruções de uso
 
 1.  Baixar todas as dependencias utilizando o comando: "npm install";
