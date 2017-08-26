@@ -1,0 +1,27 @@
+{
+  "name": "node-apis",
+  "version": "1.0.0",
+  "description": "RESTful APIs em Node.js",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeSorcerersSquad/node-apis.git"
+  },
+  "keywords": [
+    "node-apis"
+  ],
+  "author": "@douglaspands",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodeSorcerersSquad/node-apis/issues"
+  },
+  "homepage": "https://github.com/CodeSorcerersSquad/node-apis#readme",
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "restify": "^5.2.0"
+  }
+}
