@@ -19,9 +19,9 @@ Motor de RESTful APIs em Node.js.
 
 ### 1. Consultar usuario
 
-**Metodo**: GET  
-**URI**: users/:id  
-**Exemplos**: 
+**Metodo:** GET  
+**URI:** users/:id  
+**Exemplos:**   
 1. **Status 200:** http://localhost:3000/users/0001   
 Body de retorno:
 ~~~json
@@ -33,5 +33,6 @@ Body de retorno:
     }
 }
 ~~~
-2. **Status 204:** http://localhost:3000/users/0002
+2. **Status 204:** http://localhost:3000/users/0002  
+Não retorna body.
 
