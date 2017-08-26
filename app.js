@@ -4,7 +4,7 @@
  * @since 2017-08-25
  */
 'use strict';
-// Modulo Express
+// Modulo Restify
 const restify = require('restify');
 // Modulo Lodash
 const _ = require('lodash');
