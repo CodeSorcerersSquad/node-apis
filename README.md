@@ -24,3 +24,14 @@ Motor de RESTful APIs em Node.js.
 - **Exemplos**: 
     1. **Status 200:** http://localhost:3000/users/0001
     2. **Status 204:** http://localhost:3000/users/0002
+- Exemplo de retorno (status 200):
+
+~~~json
+{
+    "data":{
+        "id":"0001",
+        "nome":"Robert Jones",
+        "idade":25
+    }
+}
+~~~
