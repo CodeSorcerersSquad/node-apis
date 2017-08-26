@@ -32,16 +32,12 @@ const server = restify
     })
     // GzipResponse
     .use(restify.plugins.gzipResponse())
-    // QueryParser
-    .use(restify.plugins.queryParser({
-        mapParams: false
-    }))
-    // BodyParser
-    .use(restify.plugins.bodyParser({
-        mapParams: false
-    }))
     // JSONP
     .use(restify.plugins.jsonp())
+    // QueryParser
+    .use(restify.plugins.queryParser({ mapParams: false }))
+    // BodyParser
+    .use(restify.plugins.bodyParser({ mapParams: false }))
     // Throttle
     .use(restify.plugins.throttle({
         burst: 100,
