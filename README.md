@@ -13,7 +13,7 @@ Motor de RESTful APIs em Node.js.
 
 ## Servidor
 
-- **URL:** http://localhost:3000
+- **URL (default):** http://localhost:3000
 
 ## RESTful APIs:
 
