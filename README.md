@@ -29,9 +29,9 @@ Motor de RESTful APIs em Node.js.
 ~~~json
 {
     "data":{
-        "id":"0001",
-        "nome":"Robert Jones",
-        "idade":25
+        "id": "0001",
+        "nome": "Robert Jones",
+        "idade": 25
     }
 }
 ~~~
