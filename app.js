@@ -42,8 +42,8 @@ _.forEach((fs.readdirSync(dirRotas)),
     }
 );
 // Iniciar servidor
-let host = 'localhost';
-let porta = process.env[2] || '3000';
+const host = 'localhost';
+const porta = process.env[2] || '3000';
 server.listen(porta, host, () => {
     console.log('>> Servidor iniciado na URL: http://%s:%s', host, porta);
 });
