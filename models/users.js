@@ -15,6 +15,7 @@ const consultar = (id) => {
         if (id === '0001') {
             return resolve(
                 {
+                    id: id,
                     nome: 'Robert Jones',
                     idade: 25
                 }
