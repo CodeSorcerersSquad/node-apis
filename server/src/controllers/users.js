@@ -5,10 +5,11 @@
  */
 'use strict';
 /**
- * Consultar usuario
- * @function consultar
- * @param {string} id ID do usuario.
- * @return {Promise.<object>} Retorna dados do usuario.
+ * Controller
+ * @function get
+ * @param {object} req Objeto de request da API.
+ * @param {object} res Objeto de response da API.* 
+ * @return {void}
  */
 const get = (req, res) => {
 
