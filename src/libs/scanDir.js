@@ -16,7 +16,7 @@ const _ = require('lodash');
  * @returns {object} Lista de funções. 
  */
 module.exports = diretorioRaiz => {
-    let root = diretorioRaiz || __dirname;
+    let root = diretorioRaiz || '../';
     return {
         /**
          * Executa forEach para cada arquivo encontrado na pasta informada.
@@ -33,7 +33,7 @@ module.exports = diretorioRaiz => {
             const diretorio = path.join(root, pasta);
             let lista = _.reduce((fs.readdirSync(diretorio)), (acum, arquivo, key) => {
                 let arquivoCompleto = path.join(diretorio, arquivo);
-                let resultado = callback(arquivo, key, arquivoCompleto);
+                let resultado = callback(arquivoCompleto, key);
                 if (resultado) {
                     acum.push(resultado);
                 }
