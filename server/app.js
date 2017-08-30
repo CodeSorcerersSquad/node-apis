@@ -13,7 +13,7 @@ server.create();
 // Escanear diretorio de rotas.
 scanDir.forEach(['src', 'index.js'], (arquivo, key) => {
     try {
-        require(arquivo)(server.context());
+        require(arquivo)(server.getContext());
     } catch (error) {
         console.log(error);
     }

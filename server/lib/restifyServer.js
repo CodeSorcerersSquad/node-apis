@@ -94,7 +94,7 @@ const start = (funcao) => {
  * @function context
  * @return {object} Servidor Restify.
  */
-const context = () => {
+const getContext = () => {
     return servidor;
 };
 /**
@@ -146,7 +146,7 @@ module.exports = {
     create,
     forEachRoute,
     start,
-    context,
+    getContext,
     getPort,
     getHost,
     getURL,
