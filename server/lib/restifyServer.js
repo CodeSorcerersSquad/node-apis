@@ -1,25 +1,29 @@
 /**
- * @file Configurações do servidor Restify
+ * @file Configurações do servidor Restify.
  * @author douglaspands
  * @since 2017-08-28
  */
 'use strict';
-// Modulo Restify
-const restify = require('restify');
-// Modulo Bunyan
-const Logger = require('bunyan');
-// Modulo Lodash
-const _ = require('lodash');
-// Package.json
-const config = require('../package.json');
-// Servidor
+// server
 let servidor = {};
+// host
+let host = 'localhost';
+// host
+let url = '';
+// port
+let porta = process.env[2] || '3000';
 /**
  * Função para criar o servidor
  * @function create
  * @returns {object} Retorna o objeto servidor Restify.
  */
 const create = () => {
+    // Modulo Restify
+    const restify = require('restify');
+    // Modulo Bunyan
+    const Logger = require('bunyan');
+    // Package.json
+    const config = require('../package.json');
     // Servidor
     servidor = restify
         // Create server
@@ -60,6 +64,9 @@ const create = () => {
  * @return {array} Retorna uma lista de retorno das funções executadas.
  */
 const forEachRoute = (funcao) => {
+    // Modulo Lodash
+    const _ = require('lodash');
+    // Retorno        
     let retorno = [];
     _.forEach(servidor.router.mounts, (rota, key) => {
         if (_.get(rota, 'spec.method', '') && _.get(rota, 'spec.path', '')) {
@@ -75,10 +82,9 @@ const forEachRoute = (funcao) => {
  * @return {void}
  */
 const start = (funcao) => {
-    // Iniciar servidor
-    const porta = process.env[2] || '3000';
-    // Iniciando
-    servidor.listen(porta, 'localhost', () => {
+    // Iniciando servidor
+    servidor.listen(porta, host, () => {
+        url = servidor.url;
         return funcao(servidor.name, servidor.url);
     })
 };
@@ -90,10 +96,37 @@ const start = (funcao) => {
 const context = () => {
     return servidor;
 };
+/**
+ * Retorna o porta do servidor.
+ * @function getPort
+ * @return {string} Porta do servidor.
+ */
+const getPort = () => {
+    return porta;
+};
+/**
+ * Retorna o host do servidor.
+ * @function getHost
+ * @return {string} Host do servidor.
+ */
+const getHost = () => {
+    return host;
+};
+/**
+ * Retorna a URL do servidor.
+ * @function getURL
+ * @return {string} URL do servidor.
+ */
+const getURL = () => {
+    return url;
+};
 // Modulos exportados
 module.exports = {
     create,
     forEachRoute,
-    start, 
-    context
-}
+    start,
+    context,
+    getPort,
+    getHost,
+    getURL
+};
