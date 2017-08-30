@@ -11,5 +11,5 @@
  */
 module.exports = server => {
     // Consultar usuario
-    server.get('/users/:id', (req, res) => require('../controllers/users').get(req, res));
+    server.get('/users/:id', (req, res) => require('./controllers/users')(req, res));
 };

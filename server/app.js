@@ -11,7 +11,7 @@ const scanDir = require('./lib/scanDir')(__dirname);
 // Criar servidor
 server.create();
 // Escanear diretorio de rotas.
-scanDir.forEachFile('src/routes', (arquivo, key) => {
+scanDir.forEach(['src', 'index.js'], (arquivo, key) => {
     try {
         require(arquivo)(server.context());
     } catch (error) {

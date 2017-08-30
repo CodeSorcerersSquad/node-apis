@@ -20,20 +20,31 @@ module.exports = diretorioRaiz => {
     return {
         /**
          * Executa forEach para cada arquivo encontrado na pasta informada.
-         * @param {string} pasta Nome da pasta de arquivos.
+         * @param {string|array} pasta Nome da pasta de arquivos ou nome da pasta e o arquivo.
          * @param {callback} callback Função de tratamento.
          * @returns {array} Retorna lista de resultados do callback. 
          */
-        forEachFile: (pasta, callback) => {
+        forEach: (pasta, callback) => {
             // Valida parametros de entrada
-            if (!_.isString(pasta) || !_.isFunction(callback)) {
+            if (!(_.isString(pasta) || (_.isArray(pasta) && (_.size(pasta) === 2))) || !_.isFunction(callback)) {
                 return [];
             }
             // Diretorio de rotas
-            const diretorio = path.join(root, pasta);
+            let folder = _.isString(pasta) ? pasta : pasta[0];
+            let file = _.isArray(pasta) ? pasta[1] : ''
+            const diretorio = path.join(root, folder);
             let lista = _.reduce((fs.readdirSync(diretorio)), (acum, arquivo, key) => {
-                let arquivoCompleto = path.join(diretorio, arquivo);
-                let resultado = callback(arquivoCompleto, key);
+                let resultado = undefined;
+                let arquivoCompleto = '';
+                if (file){
+                    arquivoCompleto = path.join(diretorio, arquivo, file);
+                    if (fs.existsSync(arquivoCompleto)) {
+                        resultado = callback(arquivoCompleto, key);
+                    }
+                } else {
+                    arquivoCompleto = path.join(diretorio, arquivo);
+                    resultado = callback(arquivoCompleto, key);
+                }
                 if (resultado) {
                     acum.push(resultado);
                 }

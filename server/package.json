@@ -1,6 +1,6 @@
 {
   "name": "node-apis",
-  "version": "0.5.1",
+  "version": "0.6.2",
   "description": "RESTful APIs em Node.js",
   "main": "app.js",
   "scripts": {

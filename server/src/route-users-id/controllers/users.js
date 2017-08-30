@@ -11,13 +11,13 @@
  * @param {object} res Objeto de response da API.* 
  * @return {void}
  */
-const get = (req, res) => {
+const controller = (req, res) => {
 
     // Modulo Lodash
     const _ = require('lodash');
 
     // Model do usuario 
-    const usuario = require('../models/users');
+    const usuario = require('../services/users');
 
     // Request
     let id = _.get(req.params, 'id', '');
@@ -26,17 +26,15 @@ const get = (req, res) => {
     return usuario
         .consultar(id)
         .then(usuario => {
-            if (_.isEmpty(usuario)) {
-                return res.send(204);
-            } else {
+            if (usuario) {
                 let retorno = {
                     data: usuario
                 };
                 return res.send(200, retorno);
+            } else {
+                return res.send(204);
             }
         });
 };
 
-module.exports = {
-    get
-}; 
+module.exports = controller;
