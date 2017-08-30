@@ -13,11 +13,13 @@ server.create();
 // Escanear diretorio de rotas.
 scanDir.forEachFile('src/routes', (arquivo, key) => {
     try {
-        require(arquivo).push(server.context());
+        require(arquivo)(server.context());
     } catch (error) {
         console.log(error);
     }
 });
+// Gerar Log apos execução das rotas
+server.logging();
 // Iniciar servidor
 server.start((nome, url) => {
     server.forEachRoute((rota) => {

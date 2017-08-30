@@ -1,0 +1,10 @@
+{
+    "elasticSearchConfig": {
+        "indexPattern": "[logstash-]YYYY.MM.DD",
+        "type": "logs",
+        "host": "elasticSearchIp:port"
+    },
+    "logLevel": 10,
+    "logName": "myLogName",
+    "withstdout" : true
+}

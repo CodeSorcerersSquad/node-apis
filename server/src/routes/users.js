@@ -9,11 +9,7 @@
  * @param {object} server Modulo do servidor.
  * @returns {void} 
  */
-const push = server => {
+module.exports = server => {
     // Consultar usuario
     server.get('/users/:id', (req, res) => require('../controllers/users').get(req, res));
 };
-
-module.exports = {
-    push
-}; 

@@ -9,11 +9,8 @@
  * @param {object} server Modulo do servidor.
  * @returns {void} 
  */
-const push = server => {
+module.exports = server => {
     // Consultar usuario
-    server.get('/', (req, res) => res.send(200, { mensagem: 'Servidor de RESTful APIs ativo!' }));
+    let mensagem = 'Servidor de RESTful APIs ativo!';
+    server.get('/', (req, res) => res.send(200, { mensagem: mensagem }));
 };
-
-module.exports = {
-    push
-}; 

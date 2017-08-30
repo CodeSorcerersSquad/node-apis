@@ -4,6 +4,14 @@
  * @since 2017-08-28
  */
 'use strict';
+// Modulo Restify
+const restify = require('restify');
+// Modulo Bunyan
+const Logger = require('bunyan');
+// Modulo para geração de log no ElasticSearch
+const logFactory = require('restify-log-middleware');
+// Package.json
+const config = require('../package.json');
 // server
 let servidor = {};
 // host
@@ -12,29 +20,23 @@ let host = 'localhost';
 let url = '';
 // port
 let porta = process.env[2] || '3000';
+// Config Log
+const log = new Logger.createLogger({
+    name: config.name,
+    serializers: Logger.stdSerializers
+});
 /**
  * Função para criar o servidor
  * @function create
  * @returns {object} Retorna o objeto servidor Restify.
  */
 const create = () => {
-    // Modulo Restify
-    const restify = require('restify');
-    // Modulo Bunyan
-    const Logger = require('bunyan');
-    // Package.json
-    const config = require('../package.json');
     // Servidor
     servidor = restify
         // Create server
         .createServer({
             name: config.name,
-            version: config.version,
-            // Config Log
-            log: new Logger.createLogger({
-                name: config.name,
-                serializers: Logger.stdSerializers
-            })
+            version: config.version
         })
         // GzipResponse
         .use(restify.plugins.gzipResponse())
@@ -49,12 +51,7 @@ const create = () => {
             burst: 100,
             rate: 50,
             ip: true
-        }))
-        // Request Log
-        .pre((req, res, next) => {
-            req.log.info({ req: req, res: res }, 'REQUEST');
-            next();
-        });
+        }));
     return servidor;
 };
 /**
@@ -120,6 +117,26 @@ const getHost = () => {
 const getURL = () => {
     return url;
 };
+/**
+ * Gera .
+ * @function getURL
+ * @return {string} URL do servidor.
+ */
+const logging = () => {
+    let option = {
+        log: log,
+        event: 'routed',
+        server: servidor
+    };
+    // Geração de Log do Restify
+    servidor.on(option.event, restify.plugins.auditLogger(option));
+    // Obter configurações do ElasticSearch
+    let elasticSearchConfig = require('../config/elasticSearch');
+    elasticSearchConfig.logName = config.name;
+    // Gerando Log do Restify no ElasticSearch
+    servidor.use(logFactory.createLogMiddleware(config.name, elasticSearchConfig));
+    return;
+};
 // Modulos exportados
 module.exports = {
     create,
@@ -128,5 +145,6 @@ module.exports = {
     context,
     getPort,
     getHost,
-    getURL
+    getURL,
+    logging
 };
