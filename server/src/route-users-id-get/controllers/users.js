@@ -17,7 +17,7 @@ const controller = (req, res) => {
     const _ = require('lodash');
 
     // Model do usuario 
-    const usuario = require('../services/users');
+    const usuario = require('../../services/consultarUsuario');
 
     // Request
     let id = _.get(req.params, 'id', '');

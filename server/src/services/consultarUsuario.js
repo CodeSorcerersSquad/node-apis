@@ -5,7 +5,7 @@
  */
 'use strict';
 // Model usuario
-const User = require('../../domains/user');
+const User = require('../domains/user');
 /**
  * Consultar usuario
  * @function consultar

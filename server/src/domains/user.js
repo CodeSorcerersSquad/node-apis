@@ -6,6 +6,7 @@
 'use strict';
 /**
  * Model usuario
+ * @class User
  */
 class User {
 

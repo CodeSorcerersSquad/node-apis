@@ -2,7 +2,7 @@
     "elasticSearchConfig": {
         "indexPattern": "[logstash-]YYYY.MM.DD",
         "type": "logs",
-        "host": "elasticSearchIp:port"
+        "host": "127.0.0.1:9200"
     },
     "logLevel": 10,
     "logName": "myLogName",
