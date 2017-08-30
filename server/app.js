@@ -21,9 +21,9 @@ scanDir.forEachFile('src/routes', (arquivo, key) => {
 // Gerar Log apos execução das rotas
 server.logging();
 // Iniciar servidor
-server.start((nome, url) => {
+server.start(configs => {
     server.forEachRoute((rota) => {
         console.log('> route: %s %s', rota.method, rota.path);
     });
-    console.log('> %s listening at %s', nome, url);
+    console.log('> %s@%s listening at %s', configs.name, configs.version, configs.url);
 });

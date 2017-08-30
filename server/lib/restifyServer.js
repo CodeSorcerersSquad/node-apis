@@ -20,7 +20,7 @@ let host = 'localhost';
 let url = '';
 // port
 let porta = process.env[2] || '3000';
-// Config Log
+// Config Log (Logger)
 const log = new Logger.createLogger({
     name: config.name,
     serializers: Logger.stdSerializers
@@ -82,7 +82,11 @@ const start = (funcao) => {
     // Iniciando servidor
     servidor.listen(porta, host, () => {
         url = servidor.url;
-        return funcao(servidor.name, servidor.url);
+        return funcao({
+            name: config.name,
+            version: config.version,
+            url: servidor.url
+        });
     })
 };
 /**
@@ -118,9 +122,9 @@ const getURL = () => {
     return url;
 };
 /**
- * Gera .
- * @function getURL
- * @return {string} URL do servidor.
+ * Gerar log do Restify e inclusão no ElasticSearch.
+ * @function logging
+ * @return {void}
  */
 const logging = () => {
     let option = {
